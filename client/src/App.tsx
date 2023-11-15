@@ -14,7 +14,6 @@ import Account from "./components/Account/Account";
 import CleanerBook from "./components/Cleaner/CleanerBook";
 
 import api from "./api/api";
-//test
 import "./App.css";
 
 function App() {
