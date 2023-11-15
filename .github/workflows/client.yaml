@@ -13,18 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Change to the client directory
-        run: cd client
-
       - name: Set up Node.js
+        working-directory: client
         uses: actions/setup-node@v3
         with:
           node-version: 14
 
       - name: Install dependencies
+        working-directory: client
         run: npm install
 
       - name: Build React app
+        working-directory: client
         run: npm run build
 
   deploy:
