@@ -1,0 +1,36 @@
+name: Build and Deploy Backend
+
+on:
+  push:
+    paths:
+      - "server/**" # Trigger only if changes are pushed to the backend folder
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: actions/setup-docker@v2
+
+      - name: Build Docker image
+        run: docker build -t your-backend-image .
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+      - name: Deploy Docker container
+        run: |
+          docker run -d \
+            -e MYSQL_HOST=your-mysql-host \
+            -e MYSQL_USER=your-mysql-user \
+            -e MYSQL_PASSWORD=your-mysql-password \
+            -e MYSQL_DATABASE=your-mysql-database \
+            -p 3000:3000 \
+            your-backend-image
