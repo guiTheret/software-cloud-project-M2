@@ -38,3 +38,5 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: "nfp_vQE6QsQ6gWjfwaqNaXihuRSt2KCKTa7R31f0"
           NETLIFY_SITE_ID: "bespoke-daffodil-05ad91"
+        with:
+          build-dir: "./build"
