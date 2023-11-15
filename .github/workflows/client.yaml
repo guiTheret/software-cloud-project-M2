@@ -33,7 +33,6 @@ jobs:
 
     steps:
       - name: Deploy to Netlify
-        working-directory: client
         uses: netlify/actions/cli@master
         with:
           build-dir: "./build"
