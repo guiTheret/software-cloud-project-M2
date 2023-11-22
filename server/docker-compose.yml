@@ -1,0 +1,6 @@
+version: "3"
+services:
+  node-backend:
+    image: software-cloud-project-backend-image
+    ports:
+      - "3000:3000"
