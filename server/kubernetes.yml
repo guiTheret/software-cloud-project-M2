@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-project-backend-deployment
+spec:
+  replicas: 3  
+  selector:
+    matchLabels:
+      app: cloud-project-backend
+  template:
+    metadata:
+      labels:
+        app: cloud-project-backend
+    spec:
+      containers:
+        - name: cloud-project-backend
+          image: falaxway/cloud-project-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3030
