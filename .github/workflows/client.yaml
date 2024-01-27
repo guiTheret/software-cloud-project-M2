@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
 
       - name: Install dependencies
         working-directory: client
@@ -25,18 +25,3 @@ jobs:
       - name: Build React app
         working-directory: client
         run: npm run build
-
-  deploy:
-    runs-on: ubuntu-latest
-
-    needs: build
-
-    steps:
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        with:
-          publish-dir: "./client/build"
-          production-branch: main
-        env:
-          NETLIFY_AUTH_TOKEN: "nfp_vQE6QsQ6gWjfwaqNaXihuRSt2KCKTa7R31f0"
-          NETLIFY_SITE_ID: "bespoke-daffodil-05ad91"
