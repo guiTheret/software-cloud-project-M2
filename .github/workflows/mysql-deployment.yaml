@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: guitheret/cloud-m2-mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: mysecretpassw
+            - name: MYSQL_DATABASE
+              value: mydatabase
+          ports:
+            - containerPort: 3306

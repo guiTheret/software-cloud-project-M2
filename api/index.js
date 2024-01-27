@@ -16,9 +16,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-  const users = await prisma.user.findMany();
-  console.log(users);
-  return res.status(200).send({ ok: true, data: users });
+  try {
+    const users = await prisma.user.findMany();
+    console.log(users);
+    return res.status(200).send({ ok: true, data: users });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({ ok: false, error });
+  }
 });
 
 app.listen(port, () => {
