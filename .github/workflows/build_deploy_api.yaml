@@ -34,8 +34,8 @@ jobs:
           GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
         run: |
           gcloud auth configure-docker ${{env.REGION}}-docker.pkg.dev
-          docker build -t ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/project-artefact/api:latest ./api
-          docker push ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/project-artefact/api:latest
+          docker build -t ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/project-aterfact/api:latest ./api
+          docker push ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/project-aterfact/api:latest
 
       - name: "Configure kubectl for GKE"
         env:
