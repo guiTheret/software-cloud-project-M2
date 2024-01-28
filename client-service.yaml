@@ -9,9 +9,8 @@ spec:
     app: client-service
   ports:
     - port: 8080
-        targetPort: 80
-        protocol: TCP
-        name: http
+      targetPort: 80
+
 ---
 apiVersion: apps/v1
 kind: Deployment
