@@ -44,7 +44,7 @@ app.get("/fakeusers", async (req, res) => {
     const createdUsers = await prisma.user.createMany({
       data: fakeUsers,
     });
-    //
+    //aa
 
     return res.status(200).send({ ok: true, data: createdUsers });
   } catch (error) {
