@@ -35,15 +35,24 @@ function App() {
   return (
     <div>
       <div className="flex flex-col gap-2">
-        {users.map((user) => (
-          <div key={user.id} className="flex flex-row gap-2 border-bottom-1">
-            <div>{user.name}</div>
-            <div>{user.email}</div>
-            <div>{user.address}</div>
-            <div>{user.city}</div>
-            <div>{user.country}</div>
-          </div>
-        ))}
+        {users.length === 0 ? (
+          <div>No users found</div>
+        ) : (
+          <>
+            {users.map((user) => (
+              <div
+                key={user.id}
+                className="flex flex-row gap-2 border-bottom-1"
+              >
+                <div>{user.name}</div>
+                <div>{user.email}</div>
+                <div>{user.address}</div>
+                <div>{user.city}</div>
+                <div>{user.country}</div>
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );
