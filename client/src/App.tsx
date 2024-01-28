@@ -18,7 +18,11 @@ function App() {
 
   const fetchUsers = async () => {
     setLoading(true);
-    const url = import.meta.env.VITE_API_URL + "/users";
+    const url =
+      import.meta.env.API_SERVICE_SERVICE_HOST +
+      ":" +
+      import.meta.env.API_SERVICE_SERVICE_PORT +
+      "/users";
     console.log(url);
     const res = await fetch(url);
     const { data } = await res.json();
@@ -31,7 +35,8 @@ function App() {
     fetchUsers();
   }, []);
 
-  if (loading) return <div>Loading... {import.meta.env.VITE_API_URL}</div>;
+  if (loading)
+    return <div>Loading... {import.meta.env.API_SERVICE_SERVICE_HOST}</div>;
 
   return (
     <div>
