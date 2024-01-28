@@ -45,5 +45,5 @@ jobs:
 
       - name: "Deploy to GKE"
         run: |
-          sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" api-service.yaml
+          sed -i 's#GOOGLE_PROJECT_PLACEHOLDER#${GOOGLE_PROJECT}#' api-service.yaml 
           kubectl apply -f api-service.yaml
