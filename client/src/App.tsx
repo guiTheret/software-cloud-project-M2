@@ -18,11 +18,7 @@ function App() {
 
   const fetchUsers = async () => {
     setLoading(true);
-    const url =
-      import.meta.env.API_SERVICE_SERVICE_HOST +
-      ":" +
-      import.meta.env.API_SERVICE_SERVICE_PORT +
-      "/users";
+    const url = "http://api-service:3000/user";
     console.log(url);
     const res = await fetch(url);
     const { data } = await res.json();
