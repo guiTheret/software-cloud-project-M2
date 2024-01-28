@@ -7,10 +7,11 @@ spec:
   type: LoadBalancer
   selector:
     app: client-service
- - port: 8080
-    targetPort: 80
-    protocol: TCP
-    name: http
+  ports:
+    - port: 8080
+        targetPort: 80
+        protocol: TCP
+        name: http
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,4 +33,4 @@ spec:
         - name: client
           image: europe-west3-docker.pkg.dev/cloud-m2-412515/project-aterfact/client:latest
         ports:
-        - containerPort: 80
+          - containerPort: 80
