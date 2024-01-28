@@ -12,7 +12,6 @@ interface User {
 }
 
 function App() {
-  const [count, setCount] = useState(0);
   const [users, setUsers] = useState<User[]>([]);
 
   const [loading, setLoading] = useState(false);
