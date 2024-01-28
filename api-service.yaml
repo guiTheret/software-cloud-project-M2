@@ -6,26 +6,26 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: api
+    app: api-service
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 3000
+      targetPort: 3000
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api
   labels:
-    app: api
+    app: api-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api
+      app: api-service
   template:
     metadata:
       labels:
-        app: api
+        app: api-service
     spec:
       containers:
         - name: api
