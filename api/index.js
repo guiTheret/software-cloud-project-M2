@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World! project software cloud Guillaume et Enrique");
 });
 
 app.get("/users", async (req, res) => {
