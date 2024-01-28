@@ -8,6 +8,9 @@ RUN npm install -g node-gyp
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
+# Remove existing node_modules
+RUN rm -rf node_modules
+
 # Install application dependencies
 RUN npm install --verbose
 
