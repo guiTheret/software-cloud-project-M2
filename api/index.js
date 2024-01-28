@@ -45,8 +45,6 @@ app.get("/fakeusers", async (req, res) => {
       data: fakeUsers,
     });
 
-    //fix
-
     return res.status(200).send({ ok: true, data: createdUsers });
   } catch (error) {
     console.error("Error creating fake users:", error);
