@@ -1,0 +1,32 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: client-service
+  ports:
+    - port: 5173
+      targetPort: 5173
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+  labels:
+    app: client-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-service
+  template:
+    metadata:
+      labels:
+        app: client-service
+    spec:
+      containers:
+        - name: client
+          image: europe-west3-docker.pkg.dev/cloud-m2-412515/project-aterfact/client:latest
