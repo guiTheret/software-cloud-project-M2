@@ -17,15 +17,16 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v2
 
-      - id: 'auth'
-          uses: 'google-github-actions/auth@v2'
-          with:
-            credentials_json: '${{ secrets.GCP_SA_KEY }}'
-      - name: 'Set up Cloud SDK'
-          uses: 'google-github-actions/setup-gcloud@v2'
-      
+      - name: "Auth with Google Cloud"
+        id: "auth"
+        uses: "google-github-actions/auth@v2"
+        with:
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
 
-      - name: build and push the docker image
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v2"
+
+      - name: "Build and push the Docker image"
         env:
           GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
         run: |
@@ -33,7 +34,7 @@ jobs:
           docker build -t ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/api/nginx:latest ./api
           docker push ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/api/nginx:latest
 
-      - name: deploy to gke
+      - name: "Deploy to GKE"
         env:
           GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
         run: |
