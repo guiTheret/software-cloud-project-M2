@@ -24,7 +24,10 @@ jobs:
           credentials_json: "${{ secrets.GCP_SA_KEY }}"
 
       - name: "Set up Cloud SDK"
-        uses: "google-github-actions/setup-gcloud@v2"
+        uses: "google-github-actions/setup-gcloud@v2.2.1"
+
+      - name: "Install kubectl"
+        run: gcloud components install kubectl
 
       - name: "Build and push the Docker image"
         env:
@@ -34,10 +37,13 @@ jobs:
           docker build -t ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/project-aterfact/api:latest ./api
           docker push ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/project-aterfact/api:latest
 
-      - name: "Deploy to GKE"
+      - name: "Configure kubectl for GKE"
         env:
           GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
         run: |
           gcloud container clusters get-credentials project-cluster --zone europe-west3 --project $GOOGLE_PROJECT
+
+      - name: "Deploy to GKE"
+        run: |
           sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" resources.yaml
           kubectl apply -f resources.yaml
