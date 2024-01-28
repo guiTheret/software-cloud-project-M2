@@ -2,12 +2,10 @@ FROM node:18-alpine
 
 COPY package.json .
 
-RUN npm install -g pnpm
-
-RUN pnpm install
+RUN npm install
 
 COPY . .
 
 EXPOSE 8080
 
-CMD [ "pnpm", "run", "dev" ]
+CMD [ "npm", "run", "dev" ]
