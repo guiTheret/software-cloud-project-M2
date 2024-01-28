@@ -2,17 +2,16 @@
 # This line specifies the base image for the Docker image. In this case, we're using an official Node.js runtime image with version 18.18 and the # Alpine Linux distribution.
 FROM node:18.18-alpine
 
-# This line installs the node-gyp package globally using npm. node-gyp is a tool for building native Node.js modules.
-RUN npm install -g node-gyp
-
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
 # Remove existing node_modules
 RUN rm -rf node_modules
 
-# Install application dependencies
-RUN npm install --verbose
+RUN npm install -g pnpm
+
+# Install dependencies
+RUN pnpm install
 
 # Copy the rest of your application code to the container
 COPY . .
@@ -27,4 +26,4 @@ RUN npx prisma generate
 EXPOSE 3000
 
 # Define the command to run your application
-CMD ["npm", "run","dev"]
+CMD ["pnpm", "run","dev"]
