@@ -27,10 +27,11 @@ function App() {
   };
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_API_URL);
     fetchUsers();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>Loading... {import.meta.env.VITE_API_URL}</div>;
 
   return (
     <div>
