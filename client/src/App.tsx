@@ -19,7 +19,7 @@ function App() {
   const fetchUsers = async () => {
     setLoading(true);
     const url = "http://api-service:3000/user";
-    console.log(url);
+    console.log("URL SIS ", url);
     const res = await fetch(url);
     const { data } = await res.json();
     setUsers(data);
