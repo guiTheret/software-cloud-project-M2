@@ -5,7 +5,7 @@ const port = 3000;
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const faker = require("faker");
+const { faker } = require("@faker-js/faker");
 
 // allow CORS
 app.use((req, res, next) => {
