@@ -6,9 +6,11 @@ RUN npm install
 RUN npm run build
 
 FROM ubuntu
+
 RUN apt-get update
 RUN apt-get install nginx -y
 COPY --from=build /dist /var/www/html/
-EXPOSE 5173
+
+EXPOSE 8080
 
 CMD ["nginx","-g","daemon off;"]
