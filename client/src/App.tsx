@@ -18,8 +18,7 @@ function App() {
 
   const fetchUsers = async () => {
     setLoading(true);
-    const url = import.meta.env.VITE_API_URL + "/users";
-    const res = await fetch(url);
+    const res = await fetch("/api/users");
 
     const { data } = await res.json();
     setUsers(data);
@@ -31,7 +30,7 @@ function App() {
     fetchUsers();
   }, []);
 
-  if (loading) return <div>Loading... {import.meta.env.VITE_API_URL}</div>;
+  if (loading) return <div>J'y crois pitié ...loading</div>;
 
   return (
     <div>
