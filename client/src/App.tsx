@@ -21,11 +21,9 @@ function App() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-
       const { data } = await axios.get<User[]>(
         "http://34.159.72.192:3000/users"
       );
-
       setUsers(data);
       setLoading(false);
     } catch (error: any) {
