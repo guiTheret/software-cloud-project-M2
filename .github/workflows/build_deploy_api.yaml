@@ -1,0 +1,48 @@
+name: Deploy on API change
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "api/**" # This ensures the workflow is triggered only when changes are made in the "api" folder
+
+env:
+  REGION: europe-west3
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v2
+
+      - name: "Auth with Google Cloud"
+        id: "auth"
+        uses: "google-github-actions/auth@v2"
+        with:
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v2"
+
+      - name: "Install kubectl"
+        run: gcloud components install kubectl
+
+      - name: "Build and push the Docker image"
+        env:
+          GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
+        run: |
+          gcloud auth configure-docker ${{env.REGION}}-docker.pkg.dev
+          docker build --no-cache -t ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/project-aterfact/api:latest ./api
+          docker push ${{env.REGION}}-docker.pkg.dev/$GOOGLE_PROJECT/project-aterfact/api:latest
+
+      - name: "Configure kubectl for GKE"
+        env:
+          GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
+        run: |
+          gcloud container clusters get-credentials project-cluster --zone europe-west3 --project $GOOGLE_PROJECT
+
+      - name: "Deploy to GKE"
+        run: |
+          kubectl apply -f api-service.yaml
