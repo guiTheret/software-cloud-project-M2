@@ -24,7 +24,6 @@ app.get("/users", async (req, res) => {
     return res.status(200).send({ ok: true, data: users });
   } catch (error) {
     console.log(error);
-    //
     return res.status(500).send({ ok: false, message: "ERROR_SERVER" });
   }
 });
