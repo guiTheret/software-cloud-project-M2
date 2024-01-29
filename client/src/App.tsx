@@ -20,9 +20,7 @@ function App() {
   const fetchUsers = async () => {
     setLoading(true);
 
-    const { data } = await axios.get<User[]>(
-      import.meta.env.API_URL + "/users"
-    );
+    const { data } = await axios.get<User[]>("/api/users");
 
     setUsers(data);
 
