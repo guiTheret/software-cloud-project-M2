@@ -30,5 +30,6 @@ spec:
       containers:
         - name: api
           image: europe-west3-docker.pkg.dev/cloud-m2-412515/project-aterfact/api:latest
-        env:
-          DATABASE_URL:  mysql://root:mysecretpassw@mysql-service:3306/mydatabase?schema=public
+          env:
+            - name: DATABASE_URL
+              value: "mysql://root:mysecretpassw@mysql-service:3306/mydatabase?schema=public"
