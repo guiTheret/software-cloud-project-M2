@@ -35,10 +35,10 @@ app.get("/fakeusers", async (req, res) => {
   try {
     const fakeUsers = Array.from({ length: numberOfUsers }, () => ({
       email: faker.internet.email(),
-      name: faker.name.findName(),
-      address: faker.address.streetAddress(),
-      city: faker.address.city(),
-      country: faker.address.country(),
+      name: faker.person.name(),
+      address: faker.location.streetAddress(),
+      city: faker.location.city(),
+      country: faker.location.country(),
     }));
 
     // Save fake users to the database using Prisma
