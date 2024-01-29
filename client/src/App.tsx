@@ -39,7 +39,7 @@ function App() {
     try {
       setLoading(true);
 
-      const { data2 } = await axios.get<User[]>("/api/users");
+      await axios.get<User[]>("/api/users");
     } catch (error: any) {
       console.log(error);
       setError(error.message);
