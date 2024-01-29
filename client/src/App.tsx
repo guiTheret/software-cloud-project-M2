@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import "./App.css";
 
@@ -18,9 +19,9 @@ function App() {
 
   const fetchUsers = async () => {
     setLoading(true);
-    const res = await fetch("/api/users");
 
-    const { data } = await res.json();
+    const { data } = await axios.get<User[]>("/api/users");
+
     setUsers(data);
 
     setLoading(false);
@@ -30,7 +31,7 @@ function App() {
     fetchUsers();
   }, []);
 
-  if (loading) return <div>J'y crois pitié ...loading</div>;
+  if (loading) return <div>loading...</div>;
 
   return (
     <div>
