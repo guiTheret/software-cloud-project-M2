@@ -51,7 +51,7 @@ function App() {
         }}
       >
         {users.length === 0 ? (
-          <div>No users found</div>
+          <div>No users found in databse</div>
         ) : (
           <>
             {users.map((user) => (
