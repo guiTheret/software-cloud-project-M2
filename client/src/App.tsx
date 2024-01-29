@@ -23,7 +23,6 @@ function App() {
     const { data } = await axios.get<User[]>("/api/users");
 
     setUsers(data);
-
     setLoading(false);
   };
 
