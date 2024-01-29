@@ -22,7 +22,9 @@ function App() {
     try {
       setLoading(true);
 
-      const { data } = await axios.get<User[]>("/api/users");
+      const { data } = await axios.get<User[]>(
+        "http://34.159.72.192:3000/users"
+      );
 
       setUsers(data);
       setLoading(false);
