@@ -33,6 +33,6 @@ spec:
           image: europe-west3-docker.pkg.dev/cloud-m2-412515/project-aterfact/client:latest
           ports:
             - containerPort: 80
-           env:
+          env:
             - name: VITE_API_URL
               value: "http://api-service:3000"

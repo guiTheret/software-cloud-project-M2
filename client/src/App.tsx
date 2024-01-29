@@ -20,6 +20,7 @@ function App() {
     setLoading(true);
     const url = import.meta.env.VITE_API_URL + "/users";
     const res = await fetch(url);
+
     const { data } = await res.json();
     setUsers(data);
 
