@@ -38,6 +38,7 @@ function App() {
   const fetchUsers2 = async () => {
     try {
       setLoading(true);
+
       await axios.get<User[]>("/api/users");
     } catch (error: any) {
       console.log(error);
