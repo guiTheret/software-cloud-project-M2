@@ -28,7 +28,7 @@ function App() {
       setLoading(false);
     } catch (error: any) {
       console.log(error);
-      setError(JSON.stringify(error));
+      setError(error.message);
       setLoading(false);
     }
   };
