@@ -50,7 +50,7 @@ function App() {
     fetchUsers2();
   }, []);
 
-  if (loading) return <div>loading updated...</div>;
+  if (loading) return <div>loading updated..</div>;
 
   if (error) return <div>{error}</div>;
 
