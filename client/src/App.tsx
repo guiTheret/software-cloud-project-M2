@@ -21,10 +21,10 @@ function App() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get<User[]>(
+      const { data } = await axios.get<{ data: User[] }>(
         "http://34.159.72.192:3000/users"
       );
-      setUsers(data);
+      setUsers(data.data);
       setLoading(false);
     } catch (error: any) {
       console.log(error);
@@ -42,7 +42,14 @@ function App() {
 
   return (
     <div>
-      <div className="flex flex-col gap-2">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+          borderBottom: "1px solid black",
+        }}
+      >
         {users.length === 0 ? (
           <div>No users found</div>
         ) : (
@@ -50,13 +57,20 @@ function App() {
             {users.map((user) => (
               <div
                 key={user.id}
-                className="flex flex-row gap-2 border-bottom-1"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "4px",
+                  borderBottom: "1px solid black",
+                  width: "100%",
+                  padding: "4px",
+                }}
               >
-                <div>{user.name}</div>
-                <div>{user.email}</div>
-                <div>{user.address}</div>
-                <div>{user.city}</div>
-                <div>{user.country}</div>
+                <div style={{ width: "20%" }}>{user.name}</div>
+                <div style={{ width: "30%" }}>{user.email}</div>
+                <div style={{ width: "20%" }}>{user.address}</div>
+                <div style={{ width: "20%" }}>{user.city}</div>
+                <div style={{ width: "10%" }}>{user.country}</div>
               </div>
             ))}
           </>
