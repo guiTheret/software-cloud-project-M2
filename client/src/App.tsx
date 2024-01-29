@@ -34,20 +34,8 @@ function App() {
       setLoading(false);
     }
   };
-
-  const fetchUsers2 = async () => {
-    try {
-      setLoading(true);
-
-      await axios.get<User[]>("/api/users");
-    } catch (error: any) {
-      console.log(error);
-      setError(error.message);
-    }
-  };
   useEffect(() => {
     fetchUsers();
-    fetchUsers2();
   }, []);
 
   if (loading) return <div>loading updated..</div>;
