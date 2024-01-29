@@ -10,6 +10,13 @@ spec:
   rules:
     - http:
         paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client-service
+                port:
+                  number: 8080
           - path: /api/?(.*)
             pathType: Prefix
             backend:
