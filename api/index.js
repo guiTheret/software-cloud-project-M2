@@ -35,12 +35,13 @@ app.get("/fakeusers", async (req, res) => {
   try {
     const fakeUsers = Array.from({ length: numberOfUsers }, () => ({
       email: faker.internet.email(),
-      name: faker.person.name(),
+      name: faker.internet.userName(),
       address: faker.location.streetAddress(),
       city: faker.location.city(),
       country: faker.location.country(),
     }));
 
+    console.log(fakeUsers);
     const createdUsers = await prisma.user.createMany({
       data: fakeUsers,
     });
