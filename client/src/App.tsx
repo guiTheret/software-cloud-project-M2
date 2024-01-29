@@ -16,14 +16,21 @@ function App() {
   const [users, setUsers] = useState<User[]>([]);
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchUsers = async () => {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const { data } = await axios.get<User[]>("/api/users");
+      const { data } = await axios.get<User[]>("/api/users");
 
-    setUsers(data);
-    setLoading(false);
+      setUsers(data);
+      setLoading(false);
+    } catch (error: any) {
+      console.log(error);
+      setError(JSON.stringify(error));
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -31,6 +38,7 @@ function App() {
   }, []);
 
   if (loading) return <div>loading..</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div>
