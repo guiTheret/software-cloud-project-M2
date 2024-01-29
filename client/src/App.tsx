@@ -27,7 +27,6 @@ function App() {
       );
 
       setUsers(data);
-
       setLoading(false);
     } catch (error: any) {
       console.log(error);
