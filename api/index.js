@@ -41,7 +41,6 @@ app.get("/fakeusers", async (req, res) => {
       country: faker.location.country(),
     }));
 
-    // Save fake users to the database using Prisma
     const createdUsers = await prisma.user.createMany({
       data: fakeUsers,
     });
