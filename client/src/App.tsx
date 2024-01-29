@@ -26,6 +26,7 @@ function App() {
       );
       setUsers(data.data);
       setLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.log(error);
       setError(error.message);
