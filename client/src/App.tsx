@@ -51,6 +51,7 @@ function App() {
   }, []);
 
   if (loading) return <div>loading updated..</div>;
+
   if (error) return <div>{error}</div>;
 
   return (
